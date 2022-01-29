@@ -1,3 +1,6 @@
+#Maven Wrapper
+/.mvn/wrapper/maven-wrapper.jar
+
 #Maven
 target/
 pom.xml.tag
