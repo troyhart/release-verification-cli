@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 public class HelloWorldMain implements QuarkusApplication {
     @Override
     public int run(String... args) throws Exception {
-        System.out.println(Stream.of(args).collect(Collectors.joining("], [Hello ", "[Hello ", "]")));
+        System.out.println(Stream.of(args).map(String::toUpperCase).collect(Collectors.joining("], [Hello ", "[Hello ", "]")));
         return 0;
     }
 }
