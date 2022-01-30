@@ -4,10 +4,11 @@ import picocli.CommandLine;
 
 import javax.enterprise.context.Dependent;
 
-@CommandLine.Command
+@CommandLine.Command(name = "hello", description = "Say hello!")
 public class HelloCommand implements Runnable {
 
     private final GreetingService greetingService;
+
     @CommandLine.Option(names = {"-n", "--name"}, description = "Who will we greet?", defaultValue = "World")
     String name;
 
@@ -21,9 +22,3 @@ public class HelloCommand implements Runnable {
     }
 }
 
-@Dependent
-class GreetingService {
-    void sayHello(String name) {
-        System.out.println("Hello " + name + "!");
-    }
-}

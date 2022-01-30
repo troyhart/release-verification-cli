@@ -1,0 +1,9 @@
+package com.mgl.releaseverification;
+
+import io.quarkus.picocli.runtime.annotations.TopCommand;
+import picocli.CommandLine;
+
+@TopCommand
+@CommandLine.Command(mixinStandardHelpOptions = true, subcommands = {HelloCommand.class, GoodbyeCommand.class})
+public class EntryCommand {
+}
