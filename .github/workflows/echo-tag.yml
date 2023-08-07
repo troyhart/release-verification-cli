@@ -1,0 +1,19 @@
+name: Tag Triggered Workflow
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        
+      - name: Run some commands
+        run: |
+          echo "Tag pushed: ${{ github.ref }}"
+          # Add more commands here
