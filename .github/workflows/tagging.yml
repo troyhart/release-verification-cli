@@ -1,0 +1,24 @@
+on: 
+  push:
+    tags:
+      - v[0-9]+.[0-9]+.[0-9]+
+
+jobs:
+  tag:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+    - name: Git config
+      run: |
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+    - id: extract-major-version
+      shell: bash
+      run: |
+        echo result=$(echo $GITHUB_REF_NAME | cut -d'.' -f 1) >> $GITHUB_OUTPUT
+    - name: Tag new target
+      run: git tag -f ${{ steps.extract-major-version.outputs.result }} $GITHUB_REF_NAME
+    - name: Push new tag
+      run: git push origin ${{ steps.extract-major-version.outputs.result }} --force
